@@ -1,0 +1,87 @@
+//this gets roped into cache busting as described on config.php
+// $version: 2;
+
+@import "../../../node_modules/sass-to-js/sass/sass-to-js";
+
+// definitions
+@import "fonts";
+@import "colors";
+@import "mixins";
+@import "theme-vars";
+
+// global typography
+@import "typography";
+
+// above the fold
+@import "header";
+@import "banner";
+
+// define the overall styles for templates
+@import "theme";
+@import "page";
+@import "single";
+
+// define modular styles
+@import "module";
+@import "search";
+
+// misc
+@import "cta-wrapper";
+@import "forms";
+
+// below the fold
+@import "footer";
+
+
+// with modernizr you can check for ie nonsense to write graceful fallbacks
+// @import "ie";
+
+@import "foundation";
+
+
+
+// colorwheel on sample page
+.sample-page-colorwheel-json {
+  visibility: hidden;
+  font-size: 1px;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  color: transparent;
+  &:before{
+    content: sassToJs($colorwheel);
+    display: none;
+  }
+}
+
+.sample-page-colorwheel {
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1024px;
+  ul:after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+  li {
+    margin-right: 24px;
+    margin-bottom: 24px;
+    float: left;
+    width: 100px;
+    min-height: 145px;
+    span {
+      display: block;
+    }
+    span.color {
+      height: 100px;
+    }
+    span.hex {
+      font-size: 12px;
+      text-align: center;
+      .label {
+        font-size: 9px;
+      }
+    }
+  }
+}

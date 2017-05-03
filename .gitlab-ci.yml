@@ -1,0 +1,57 @@
+variables:
+  SYNC_COMMAND: rsync -avz --delete --chmod=D755,F644 --exclude=/wp-content/uploads --exclude=/wordpress --exclude=/wp-content/themes/taco-theme/app/core/vendor/tacowordpress/tacowordpress/tests ./html/
+  SYNC_WP_COMMAND: rsync -avz --delete --ignore-existing --chmod=D755,F644 ./html/wordpress/ #Sync wordpress separately to account for updates
+  STAGING_PATH: user@server.com:~/www/client-dir/html/
+  PRODUCTION_IP: 52.119.45.2
+  PRODUCTION_PATH: user@${PRODUCTION_IP}:~/www/
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  cache:
+    key: "$CI_BUILD_REF_NAME"
+    paths:
+      - html/wp-content/themes/taco-theme/node_modules/
+      - html/vendor
+      - html/wp-content/themes/taco-theme/app/core/vendor
+      - html/wordpress
+  artifacts:
+    name: dist
+    paths:
+      - html/wp-content/themes/taco-theme/_/dist
+      - html/vendor
+      - html/wp-content/themes/taco-theme/app/core/vendor
+      - html/wordpress
+  script:
+    - cd html
+    - composer install
+    - cd wp-content/themes/taco-theme
+    - npm install
+    - webpack -p
+
+staging:
+  stage: deploy
+  environment: staging
+  dependencies:
+    - build
+  only:
+    - develop
+  script:
+    - $SYNC_COMMAND $STAGING_PATH
+    - $SYNC_WP_COMMAND ${STAGING_PATH}wordpress/
+
+production:
+  stage: deploy
+  environment: production
+  when: manual
+  dependencies:
+    - build
+  only:
+    - master
+  script:
+    - ssh-keyscan $PRODUCTION_IP >> ~/.ssh/known_hosts
+    - $SYNC_COMMAND $PRODUCTION_PATH
+    - $SYNC_WP_COMMAND ${PRODUCTION_PATH}wordpress/

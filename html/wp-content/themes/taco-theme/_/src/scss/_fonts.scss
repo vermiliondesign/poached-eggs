@@ -1,0 +1,25 @@
+// example font mixins specified
+@mixin default_sans_serif {
+  font-family: 'Open Sans', sans-serif;
+}
+
+@mixin default_serif {
+  
+}
+
+// utility mixins
+@mixin upper {
+  text-transform: upper;
+  letter-spacing: .05em;
+}
+@mixin un_upper {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+
+// theme-based font mixins
+@mixin font_cta_wrapper {
+  @include upper;
+  font-size: 12px;
+}

@@ -1,0 +1,41 @@
+{
+    "name": "vermilion/app",
+    "description": "vermilion/app",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "wordpress",
+                "type": "webroot",
+                "version": "4.7.4",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/WordPress/WordPress/archive/4.7.4.zip"
+                },
+                "require" : {
+                    "fancyguy/webroot-installer": "1.0.0"
+                }
+            }
+        }
+    ],
+    "require": {
+        "wordpress": "4.7.4",
+        "fancyguy/webroot-installer": "1.0.0"
+    },
+    "extra": {
+        "webroot-dir": "wordpress",
+        "webroot-package": "wordpress"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "cd wp-content/themes/taco-theme/app/core && composer install",
+            "if [ ! -L wordpress/.htaccess ]; then cp ../.htaccess-wordpress-default wordpress/.htaccess; fi"
+        ],
+        "post-update-cmd": [
+            "cd wp-content/themes/taco-theme/app/core && composer update",
+            "if [ ! -L wordpress/.htaccess ]; then cp ../.htaccess-wordpress-default wordpress/.htaccess; fi"
+        ]
+    }
+}
