@@ -25,7 +25,7 @@ define(CLIENT_DB_USER, '');
 define(CLIENT_DB_PASSWORD, '');
 ?>
 ```
-5. after installing WordPress, you'll have to fix the WordPress Address URL and Site Address URL to remove /wordpress from the path. You can do this under Settings -> General, or running a find and replace in the database.
+5. after installing WordPress, you'll have to make sure a copy of the .htaccess-wordpress-default exists in the /wordpress directory and is just named .htaccess per usual. You will also need to fix the WordPress Address URL and Site Address URL to remove /wordpress from the path, as it will by default on first install - want to add /wordpress to the URL. You can do this under Settings -> General, or running a find and replace in the database.
 
 5. update .gitlab-ci.yml with staging and production paths
 
