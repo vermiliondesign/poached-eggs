@@ -42,6 +42,12 @@ if(preg_match('/(localhost|\.dev|\.vera)/', $_SERVER['HTTP_HOST'])) {
   define('ENVIRONMENT', ENVIRONMENT_PROD);
 }
 
+/**
+ * WordPress Database Table prefix.
+ *
+ * You can have multiple installations in one database if you give each
+ * a unique prefix. Only numbers, letters, and underscores please!
+ */
 // We're using the same db prefix across installs
 define('DB_TABLE_PREFIX',   'wp_');
 
@@ -84,13 +90,6 @@ if(ENVIRONMENT === ENVIRONMENT_PROD) {
   @ini_set('display_errors', 0);
 }
 
-/**
- * WordPress Database Table prefix.
- *
- * You can have multiple installations in one database if you give each
- * a unique prefix. Only numbers, letters, and underscores please!
- */
-$table_prefix  = 'wp_';
 
 /**
  * For developers: WordPress debugging mode.
@@ -105,11 +104,6 @@ $table_prefix  = 'wp_';
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
 define('WP_DEBUG',  (bool) getenv('WP_DEBUG'));
-
-// define('WP_AUTO_UPDATE_CORE', (bool) getenv('WP_AUTO_UPDATE_CORE'));
-define('WP_AUTO_UPDATE_CORE', 'minor');
-
-
 
 /* That's all, stop editing! Happy blogging. */
 
