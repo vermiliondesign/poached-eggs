@@ -48,8 +48,7 @@ if(preg_match('/(localhost|\.dev|\.vera)/', $_SERVER['HTTP_HOST'])) {
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-// We're using the same db prefix across installs
-define('DB_TABLE_PREFIX',   'wp_');
+$table_prefix  = 'wp_';
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
