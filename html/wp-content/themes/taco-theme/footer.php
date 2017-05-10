@@ -13,11 +13,14 @@ $theme = AppOption::getInstance();
   <div class="row">
     <div class="columns small-12">
       
-      <?php wp_nav_menu( array(
-        'theme_location' => 'menu_primary',
-        'container' => false,
-        'walker'=> new Arrow_Walker_Nav_Menu()
-      ) ); ?>
+      <?php if(has_nav_menu('menu_footer')) {
+        wp_nav_menu( array(
+          'theme_location' => 'menu_footer',
+          'container' => false,
+          'walker'=> new Arrow_Walker_Nav_Menu()
+        ) );
+      }
+      ?>
       
     </div>
   </div>

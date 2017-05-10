@@ -9,11 +9,14 @@
   </h1>
   
   <nav>
-    <?php wp_nav_menu( array(
-      'theme_location' => 'menu_primary',
-      'container' => false,
-      'walker'=> new Arrow_Walker_Nav_Menu()
-    ) ); ?>
+    <?php if(has_nav_menu('menu_primary')) {
+      wp_nav_menu( array(
+        'theme_location' => 'menu_primary',
+        'container' => false,
+        'walker'=> new Arrow_Walker_Nav_Menu()
+      ) );
+    }
+    ?>
   </nav>
 </header>
 
