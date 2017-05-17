@@ -4,8 +4,8 @@
 require_once realpath(__DIR__.'/core/vendor/autoload.php');
 
 // load frontend files from composer dir
-require_once __DIR__.'/core/CustomLoader.php';
-\TacoApp\CustomLoader::init();
+// require_once __DIR__.'/core/CustomLoader.php';
+// \TacoApp\CustomLoader::init();
 
 // let's autoload some files
 // load the psr-4 autoloader class file
@@ -18,7 +18,8 @@ $loader->addNamespace('\AppLibrary\\', __DIR__.'/lib/AppLibrary/src');
 
 // Initialize Taco
 \Taco\Loader::init();
-
+// Initialize AddMany
+\Taco\AddMany\Loader::init();
 
 // traits
 require_once __DIR__.'/traits/Taquito.php';
