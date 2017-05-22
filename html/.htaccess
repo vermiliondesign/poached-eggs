@@ -54,9 +54,9 @@ RewriteRule ^wp-content/themes/taco-theme/app/core/vendor($|/) - [F,L]
 
 # enforce HTTPS
 # Avoid one layer of redirects by directing directly to www
-RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP_HOST} caintravel\.com$ [NC]
-RewriteRule ^(.*)$ https://www.caintravel.com/$1 [L,R=301]
+#RewriteCond %{HTTPS} !=on
+#RewriteCond %{HTTP_HOST} clientname\.com$ [NC]
+#RewriteRule ^(.*)$ https://www.clientname.com/$1 [L,R=301]
 
 # direct non-www to www
 ## RewriteCond %{HTTP_HOST} ^clientname\.com$ [NC]
