@@ -1,24 +1,24 @@
 #ignore wordpress
-html/wordpress/
+/html/wordpress/
 
 # ignore db creds
-db.php
+/db.php
 
 # ignore assets
-assets/
+/assets/
 
 #ignore composer vendor
-html/vendor/
+/vendor/
 
 #ignore uploads
-html/wp-content/uploads/
+/html/wp-content/uploads/
 
 #do not ignore yoast seo vendor
 !/html/wp-content/plugins/wordpress-seo/vendor/
 
 #frontend ignores
-html/wp-content/themes/taco-theme/node_modules/
-html/wp-content/themes/taco-theme/_/.sass_cache
+/html/wp-content/themes/taco-theme/node_modules/
+/html/wp-content/themes/taco-theme/_/.sass_cache
 .codekit-cache
 *.css.map
 *.js.map

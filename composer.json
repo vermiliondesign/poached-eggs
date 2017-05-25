@@ -25,17 +25,17 @@
         "fancyguy/webroot-installer": "1.0.0"
     },
     "extra": {
-        "webroot-dir": "wordpress",
+        "webroot-dir": "html/wordpress",
         "webroot-package": "wordpress"
     },
     "scripts": {
         "post-install-cmd": [
-            "cd wp-content/themes/taco-theme/app/core && composer install",
-            "if [ ! -L wordpress/.htaccess ]; then cp ../.htaccess-wordpress-default wordpress/.htaccess; fi"
+            "cd html/wp-content/themes/taco-theme/app/core && composer install",
+            "if [ ! -L html/wordpress/.htaccess ]; then cp .htaccess-wordpress-default html/wordpress/.htaccess; fi"
         ],
         "post-update-cmd": [
-            "cd wp-content/themes/taco-theme/app/core && composer update",
-            "if [ ! -L wordpress/.htaccess ]; then cp ../.htaccess-wordpress-default wordpress/.htaccess; fi"
+            "cd html/wp-content/themes/taco-theme/app/core && composer install",
+            "if [ ! -L html/wordpress/.htaccess ]; then cp .htaccess-wordpress-default html/wordpress/.htaccess; fi"
         ]
     }
 }

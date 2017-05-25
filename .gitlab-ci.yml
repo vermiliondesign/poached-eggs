@@ -26,9 +26,8 @@ build:
       - html/wp-content/themes/taco-theme/app/core/vendor
       - html/wordpress
   script:
-    - cd html
     - composer install
-    - cd wp-content/themes/taco-theme
+    - cd html/wp-content/themes/taco-theme
     - npm install
     - webpack -p
 
