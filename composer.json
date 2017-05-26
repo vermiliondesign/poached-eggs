@@ -31,11 +31,13 @@
     "scripts": {
         "post-install-cmd": [
             "cd html/wp-content/themes/taco-theme/app/core && composer install",
-            "if [ ! -L html/wordpress/.htaccess ]; then cp .htaccess-wordpress-default html/wordpress/.htaccess; fi"
+            "if [ ! -L html/wordpress/.htaccess ]; then cp .htaccess-wordpress-default html/wordpress/.htaccess; fi",
+            "ln -s html/wp-content/themes/taco-theme ./shortcut-to-taco-theme"
         ],
         "post-update-cmd": [
             "cd html/wp-content/themes/taco-theme/app/core && composer install",
-            "if [ ! -L html/wordpress/.htaccess ]; then cp .htaccess-wordpress-default html/wordpress/.htaccess; fi"
+            "if [ ! -L html/wordpress/.htaccess ]; then cp .htaccess-wordpress-default html/wordpress/.htaccess; fi",
+            "ln -s html/wp-content/themes/taco-theme ./shortcut-to-taco-theme"
         ]
     }
 }
