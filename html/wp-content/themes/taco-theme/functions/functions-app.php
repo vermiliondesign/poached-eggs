@@ -411,7 +411,7 @@ add_filter('wp_nav_menu', 'add_slug_to_menu_item_class');
 */
 // used for mobile menu, hide the arrow-down-mobile typically for desktop only
 class Arrow_Walker_Nav_Menu extends Walker_Nav_Menu {
-  function start_lvl(&$output, $depth, $args) {
+  function start_lvl(&$output, $depth = 0, $args = []) {
     $indent = str_repeat("\t", $depth);
     if($depth ==0) {
       $output .='<span class="arrow-down-mobile"><i class="fa fa-arrow-down"></i></span>';

@@ -11,11 +11,19 @@ class Page extends \Taco\Post {
 */
   public function getFields() {
     $this->loadPost();
+    $loaded_post_fields = [];
+
+    if (!empty($this->loaded_post)) {
+      $loaded_post_fields = $this->getFieldsByPageTemplate(
+        get_page_template_slug($this->loaded_post->ID)
+      );
+    } else {
+      $loaded_post_fields = [];
+    }
+
     return array_merge(
       $this->getDefaultFields(),
-      $this->getFieldsByPageTemplate(
-        get_page_template_slug($this->loaded_post->ID)
-      )
+      $loaded_post_fields
     );
   }
 
