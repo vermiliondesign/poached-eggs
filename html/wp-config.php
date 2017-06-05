@@ -48,7 +48,7 @@ if(preg_match('/(localhost|\.dev|\.vera)/', $_SERVER['HTTP_HOST'])) {
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix  = 'wp_';
+$table_prefix  = 'taco_phpunit_test_';
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
@@ -87,6 +87,9 @@ define('WP_AUTO_UPDATE_CORE', 'minor');
 if(ENVIRONMENT === ENVIRONMENT_PROD) {
   error_reporting(0);
   @ini_set('display_errors', 0);
+} else {
+  error_reporting(E_ALL);
+  @ini_set('display_errors', true);
 }
 
 
