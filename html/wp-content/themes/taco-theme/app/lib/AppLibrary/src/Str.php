@@ -138,18 +138,6 @@ class Str {
   
   
   /**
-   * Get the first char
-   * This is only typically helpful when referencing the function name
-   * @param string $input
-   * @param int $length
-   * @return string
-   */
-  public static function getFirstChar($input, $length=1) {
-    return substr($input, 0, $length);
-  }
-  
-  
-  /**
    * Get a formatted phone number
    * @param string $phone
    * @param string $format

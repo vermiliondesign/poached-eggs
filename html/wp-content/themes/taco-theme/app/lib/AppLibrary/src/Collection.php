@@ -5,6 +5,15 @@ namespace AppLibrary;
 
 // Temporary storage for Underscore.php methods
 class Collection {
+
+  /**
+   * Is this variable iterable?
+   * @param array $arr
+   * @return bool
+   */
+  public static function iterable($arr) {
+    return (is_array($arr) && count($arr) > 0);
+  }
   
   // Extract an array of values for a given property
   public static function pluck($collection=null, $key=null) {

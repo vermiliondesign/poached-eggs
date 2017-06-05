@@ -86,20 +86,7 @@ class Html {
     $attribs['href'] = $url;
     return self::tag('a', $body, $attribs);
   }
-  
-  
-  
-  /**
-   * Get an anchor (<img>) tag
-   * @param string $src
-   * @param array $attribs
-   * @return string
-   */
-  public static function img($src) {
-    $attribs['src'] = $src;
-    return self::tag('img', $attribs);
-  }
-  
+
   
   /**
    * Get an HTML ul list
@@ -224,8 +211,11 @@ class Html {
    * @param bool $close Add closing tag?
    * @return string
    */
-  /* // Disabled until staging supports PHP 5.3. Ugh.
   public static function __callStatic($method, $args) {
+    if (method_exists(__CLASS__, $method)) {
+      return call_user_func_array(__CLASS__ . '::' . $method, $args);
+    }
+
     $element_type = $method;
     
     // Call tag from here so that the tag method can uniquely define default params
@@ -237,24 +227,4 @@ class Html {
       case 3: return self::tag($element_type, $args[0], $args[1], $args[2]);
     }
   }
-  */
-  // @todo Remove all these when __callStatic is enabled
-  public static function h1($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('h1', $body, $attribs, $close, $is_html); }
-  public static function h2($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('h2', $body, $attribs, $close, $is_html); }
-  public static function h3($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('h3', $body, $attribs, $close, $is_html); }
-  public static function h4($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('h4', $body, $attribs, $close, $is_html); }
-  public static function h5($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('h5', $body, $attribs, $close, $is_html); }
-  public static function h6($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('h6', $body, $attribs, $close, $is_html); }
-  public static function p($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('p', $body, $attribs, $close, $is_html); }
-  public static function b($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('b', $body, $attribs, $close, $is_html); }
-  public static function i($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('i', $body, $attribs, $close, $is_html); }
-  public static function span($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('span', $body, $attribs, $close, $is_html); }
-  public static function strong($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('strong', $body, $attribs, $close, $is_html); }
-  public static function u($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('u', $body, $attribs, $close, $is_html); }
-  public static function a($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('a', $body, $attribs, $close, $is_html); }
-  public static function li($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('li', $body, $attribs, $close, $is_html); }
-  public static function select($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('select', $body, $attribs, $close, $is_html); }
-  public static function option($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('option', $body, $attribs, $close, $is_html); }
-  public static function div($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('div', $body, $attribs, $close, $is_html); }
-  public static function iframe($body=null, $attribs=array(), $close=true, $is_html=false) { return self::tag('iframe', $body, $attribs, $close, $is_html); }
 }
