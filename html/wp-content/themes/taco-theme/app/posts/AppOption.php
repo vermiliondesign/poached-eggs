@@ -8,17 +8,9 @@ class AppOption extends \Taco\Post {
   
   public function getFields() {
     return array_merge(self::getBaseFields(), array(
-      'social_facebook'=>array('type'=>'link', 'label'=>'Facebook', 'default'=>'https://www.facebook.com/caintravel/'),
-      'social_twitter'=>array('type'=>'link', 'label'=>'Twitter', 'default'=>'https://twitter.com/caintravel'),
-      'social_linkedin'=>array('type'=>'link', 'label'=>'LinkedIn', 'default'=>'https://www.linkedin.com/company/cain-travel'),
-      'social_googleplus'=>array('type'=>'link', 'label'=>'Google+', 'default'=>'https://plus.google.com/+CainTravelBoulder'),
-      'contact_street'=>array('type'=>'text', 'label'=>'Street', 'default'=>'2990 Center Green Court'),
-      'contact_city'=>array('type'=>'text', 'label'=>'City', 'default'=>'Boulder'),
-      'contact_state'=>array('type'=>'select', 'label'=>'State', 'options'=>States::getAll(), 'default'=>''),
-      'contact_zip'=>array('type'=>'text', 'label'=>'Zip', 'default'=>'80301'),
-      'contact_email'=>array('type'=>'email', 'label'=>'Email', 'default'=>'info@caintravel.com'),
-      'contact_phone'=>array('type'=>'text', 'label'=>'Phone', 'default'=>'800-346-4747'),
-      
+      'social_facebook'=>array('type'=>'link', 'label'=>'Facebook', 'default'=>'https://www.facebook.com/'),
+      'social_twitter'=>array('type'=>'link', 'label'=>'Twitter', 'default'=>'https://twitter.com'),
+
       'analytics_key'=>array('type'=>'text', 'label'=>'Google Analytics ID', 'default'=>''),
       'analytics_tag_manager_key'=>array('type'=>'text', 'label'=>'Google Tag Manager ID', 'default'=>''),
     ));
