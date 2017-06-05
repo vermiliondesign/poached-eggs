@@ -52,4 +52,6 @@ This theme ignores WordPress core files. It also ignores the db.php so make sure
 Please review the README in the taco-theme for more information about using webpack.
 
 
-
+# Changelog
+### v1.0
+* First version to be used with PHP 7
