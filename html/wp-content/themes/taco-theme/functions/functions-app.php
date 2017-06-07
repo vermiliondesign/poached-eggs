@@ -464,3 +464,14 @@ function allow_local_autoupdates( $checkout, $context) {
 }
 
 add_filter( 'automatic_updates_is_vcs_checkout', 'allow_local_autoupdates', 10, 2);
+
+// If WP Super Cache is installed, clear the cache on post save to uncomplicate things
+if (function_exists('prune_super_cache')) {
+  function wp_super_cache_clear_cache() {
+    global $cache_path;
+    prune_super_cache( $cache_path . 'supercache/', true );
+    prune_super_cache( $cache_path, true );
+  }
+
+  add_action( 'save_post', 'wp_super_cache_clear_cache' );
+}

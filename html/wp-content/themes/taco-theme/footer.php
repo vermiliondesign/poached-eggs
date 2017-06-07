@@ -8,7 +8,7 @@ $theme = AppOption::getInstance();
 <!--/.page-wrap -->
 
 
-
+<div id="breakpoint-detector"></div>
 <footer>
   <div class="row">
     <div class="columns small-12">
@@ -31,7 +31,7 @@ $theme = AppOption::getInstance();
 
 <!-- Deferred styles https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery -->
 <noscript id="deferred-styles">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
+
 </noscript>
 
 <script>

@@ -3,85 +3,40 @@
 
 @import "../../../node_modules/sass-to-js/sass/sass-to-js";
 
+// settings
+@import "settings/variables";
+
 // definitions
-@import "fonts";
-@import "colors";
-@import "mixins";
-@import "theme-vars";
+@import "global/fonts";
+@import "global/colors";
 
 // global typography
-@import "typography";
-
-// above the fold
-@import "header";
-@import "banner";
-
-// define the overall styles for templates
-@import "theme";
-@import "page";
-@import "single";
-
-// define modular styles
-@import "module";
-@import "search";
-
-// misc
-@import "cta-wrapper";
-@import "forms";
-
-// below the fold
-@import "footer";
-
+@import "global/typography";
 
 // with modernizr you can check for ie nonsense to write graceful fallbacks
 // @import "ie";
+@import "foundation/foundation";
 
-@import "foundation";
+// util & mixins
+@import "util/mixins";
+@import "util/breakbeat";
+@import "util/remedy";
+@import "util/dev";
 
+// above the fold
+@import "components/header";
+@import "components/banner";
 
+// define the overall styles for templates
+@import "global/theme";
+@import "global/page";
+@import "global/single";
 
-// colorwheel on sample page
-.sample-page-colorwheel-json {
-  visibility: hidden;
-  font-size: 1px;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  color: transparent;
-  &:before{
-    content: sassToJs($colorwheel);
-    display: none;
-  }
-}
+// components
+@import "components/forms";
 
-.sample-page-colorwheel {
-  width: 96%;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1024px;
-  ul:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
-  li {
-    margin-right: 24px;
-    margin-bottom: 24px;
-    float: left;
-    width: 100px;
-    min-height: 145px;
-    span {
-      display: block;
-    }
-    span.color {
-      height: 100px;
-    }
-    span.hex {
-      font-size: 12px;
-      text-align: center;
-      .label {
-        font-size: 9px;
-      }
-    }
-  }
-}
+// below the fold
+@import "components/footer";
+
+// pages
+@import "pages/sample_page";

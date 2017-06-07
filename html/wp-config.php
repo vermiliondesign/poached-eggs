@@ -48,7 +48,7 @@ if(preg_match('/(localhost|\.dev|\.vera)/', $_SERVER['HTTP_HOST'])) {
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix  = 'taco_phpunit_test_';
+$table_prefix  = 'poached_eggs_test_';
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');

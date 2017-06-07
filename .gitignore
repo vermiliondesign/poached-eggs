@@ -13,6 +13,9 @@
 #ignore uploads
 /html/wp-content/uploads/
 
+#ignore cache
+/html/wp-content/cache/
+
 #do not ignore yoast seo vendor
 !/html/wp-content/plugins/wordpress-seo/vendor/
 

@@ -16,10 +16,3 @@
   text-transform: none;
   letter-spacing: normal;
 }
-
-
-// theme-based font mixins
-@mixin font_cta_wrapper {
-  @include upper;
-  font-size: 12px;
-}
