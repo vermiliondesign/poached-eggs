@@ -11,10 +11,8 @@ $theme = AppOption::getInstance();
   <?php include __DIR__.'/incl-google-tag-manager.php'; ?>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-
   <?php echo get_app_icons(); ?>
     
-  
   <?php wp_head(); ?>
 
 </head>
