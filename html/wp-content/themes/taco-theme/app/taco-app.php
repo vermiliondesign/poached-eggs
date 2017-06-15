@@ -32,3 +32,4 @@ require_once __DIR__.'/posts/Post.php';
 require_once __DIR__.'/posts/Page.php';
 
 //terms
+require_once __DIR__.'/terms/Category.php';
