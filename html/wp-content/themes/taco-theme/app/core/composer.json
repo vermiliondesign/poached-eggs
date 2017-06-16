@@ -17,6 +17,6 @@
     "tacowordpress2/tacowordpress": "1.0",
     "tacowordpress2/addmany": "0.1",
     "phpmailer/phpmailer": "5.2.23",
-    "tacowordpress/util": "dev-master"
+    "tacowordpress2/util": "dev-master"
   }
 }
