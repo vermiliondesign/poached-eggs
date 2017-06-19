@@ -11,12 +11,16 @@
     {
       "type": "vcs",
       "url": "git@github.com:tacowordpress2/addmany.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:tacowordpress2/util.git"
     }
   ],
   "require": {
-    "tacowordpress2/tacowordpress": "1.0",
-    "tacowordpress2/addmany": "0.1",
+    "tacowordpress2/tacowordpress": "^1.0",
+    "tacowordpress2/addmany": "^0.1",
     "phpmailer/phpmailer": "5.2.23",
-    "tacowordpress2/util": "dev-master"
+    "tacowordpress2/util": "^1.0"
   }
 }
