@@ -31,6 +31,7 @@ define('DB_USER',     CLIENT_DB_USER);
 define('DB_PASSWORD', CLIENT_DB_PASSWORD);
 define('DB_HOST',     CLIENT_DB_HOSTNAME);
 define('DB_NAME',     CLIENT_DB_NAME);
+define('DB_TABLE_PREFIX', '');
 define('SAVEQUERIES', true);
 
 // match creds to environment
@@ -48,7 +49,9 @@ if(preg_match('/(localhost|\.dev|\.vera)/', $_SERVER['HTTP_HOST'])) {
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix  = 'poached_eggs_test_';
+if (empty(DB_TABLE_PREFIX)) {
+  throw new \Exception('DB_TABLE_PREFIX needs to be defined in wp-config.php');
+}
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
