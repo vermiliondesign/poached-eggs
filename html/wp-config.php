@@ -80,6 +80,7 @@ define('NONCE_SALT',       'put your unique phrase here');
 
 // define where wp-content is since wordpress is in its own directory not committed through version control
 define('WP_CONTENT_DIR', __DIR__ . '/wp-content');
+define('WP_CONTENT_URL', '/wp-content');
 
 define('WP_DEFAULT_THEME', 'taco-theme');
 
