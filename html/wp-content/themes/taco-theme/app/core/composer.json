@@ -15,6 +15,10 @@
     {
       "type": "vcs",
       "url": "git@github.com:tacowordpress2/util.git"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:tacowordpress2/frontend-loader.git"
     }
   ],
   "require": {
