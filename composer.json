@@ -30,13 +30,13 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "cd html/wp-content/themes/taco-theme/app/core && composer install",
+            "cd html/wp-content/themes/taco-theme/app/core && composer install --optimize-autoloader",
             "rm -rf html/wordpress/wp-content html/wordpress/wp-config-sample.php",
             "if [ ! -L html/wordpress/.htaccess ]; then cp .htaccess-wordpress-default html/wordpress/.htaccess; fi",
             "if [ ! -L ./shortcut-to-taco-theme ]; then ln -s html/wp-content/themes/taco-theme ./shortcut-to-taco-theme; fi"
         ],
         "post-update-cmd": [
-            "cd html/wp-content/themes/taco-theme/app/core && composer install",
+            "cd html/wp-content/themes/taco-theme/app/core && composer install --optimize-autoloader",
             "rm -rf html/wordpress/wp-content html/wordpress/wp-config-sample.php",
             "if [ ! -L html/wordpress/.htaccess ]; then cp .htaccess-wordpress-default html/wordpress/.htaccess; fi",
             "if [ ! -L ./shortcut-to-taco-theme ]; then ln -s html/wp-content/themes/taco-theme ./shortcut-to-taco-theme; fi"

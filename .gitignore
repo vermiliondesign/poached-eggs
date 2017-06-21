@@ -31,7 +31,6 @@
 *.zip
 *.tar
 *.tar.gz
-*.lock
 *.scssc
 .DS_Store
 .DS_Store?
