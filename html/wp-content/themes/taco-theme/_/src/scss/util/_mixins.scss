@@ -13,7 +13,7 @@
   transform: $value;
 }
 
-@mixin tranzish($value) {
+@mixin transition($value) {
   -webkit-transition: $value;
   -moz-transition: $value;
   -ms-transition: $value;

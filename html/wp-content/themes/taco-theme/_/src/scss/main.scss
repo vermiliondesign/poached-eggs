@@ -6,22 +6,24 @@
 // settings
 @import "global/variables";
 
+// util & mixins
+@import "util/environment";
+@import "util/mixins";
+@import "util/breakbeat";
+@import "util/remedy";
+@import "util/dev";
+
 // definitions
 @import "global/fonts";
 @import "global/colors";
-
-// global typography
-@import "global/typography";
 
 // with modernizr you can check for ie nonsense to write graceful fallbacks
 // @import "ie";
 @import "foundation/foundation";
 
-// util & mixins
-@import "util/mixins";
-@import "util/breakbeat";
-@import "util/remedy";
-@import "util/dev";
+// global typography
+
+@import "global/typography";
 
 // above the fold
 @import "components/header";
