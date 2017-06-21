@@ -1,10 +1,10 @@
 // example font mixins specified
 @mixin default_sans_serif {
-  font-family: 'Open Sans', sans-serif;
+  font-family: sans-serif;
 }
 
 @mixin default_serif {
-  
+  font-family: serif;
 }
 
 // utility mixins
