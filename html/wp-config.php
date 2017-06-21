@@ -17,7 +17,6 @@
  *
  * @package WordPress
  */
-require_once __DIR__.'/../vendor/autoload.php';
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
