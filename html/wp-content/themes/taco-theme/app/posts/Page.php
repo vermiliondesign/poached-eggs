@@ -31,63 +31,39 @@ class Page extends \Taco\Post {
   public function getDefaultFields() {
     return array();
   }
-  
-  
-  
+
+
+
   public function getFieldsByPageTemplate($template_file_name) {
     // setup empty array to return at the end
     $template_fields = [];
-    
-    
+
+
     if($template_file_name === 'templates/tmpl-demo.php') {
       $template_fields = array_merge($template_fields, array(
-        'addmany_slider' => array(
-          'type' => 'textarea'
+        'demo' => array(
+          'type' => 'text'
         )
       ));
     }
-    
-    // all pages except the home page get these default values
-    if($template_file_name !== 'templates/tmpl-home.php') {
-      $template_fields = array_merge($template_fields, array(
-        'banner_style' => array(
-          'type'=>'select',
-          'description'=>'If no banner style is selected, it will default to "Banner - Default"',
-          'options'=>array(
-            'banner_default'=>'Banner - Default',
-            'banner_with_image'=>'Banner - with Image',
-          )
-        ),
-        'banner_image' => array(
-          'type' => 'image',
-          'description' => 'Dimensions work best if pre-cropped at ## x ## pixels.'
-        )
-      ));
-    }
-    
-    // homepage only
-    if($template_file_name === 'templates/tmpl-home.php') {
-      $template_fields = array_merge($template_fields, array());
-    }
-    
-    
+
     return $template_fields;
   }
-  
+
   public function getAdminColumns() {
     return array('title');
   }
-  
+
   // get metaboxes and conditional js to hide/show fields
   public function getMetaBoxes() {
 
     wp_register_script('taco_page_conditionals', sprintf('%s/themes/taco-theme/app/_/js/page.js', content_url()), 'jquery', THEME_VERSION);
     wp_enqueue_script('taco_page_conditionals');
-    
+
     // return parent::getMetaBoxes();
     return self::METABOX_GROUPING_PREFIX;
   }
-  
+
   /**
    * This should only be used on the admin side to manually load the post in getFields()
    * because the global $post var isn't accessible when we need it
