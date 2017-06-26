@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "19cc39607b6ac9e37e1e3b253b3b6803",
     "content-hash": "9ea461b9fc47d80e7a905c3f1d1d1cb3",
     "packages": [
         {
@@ -81,7 +80,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2017-03-15 19:32:56"
+            "time": "2017-03-15T19:32:56+00:00"
         },
         {
             "name": "tacowordpress2/addmany",
@@ -89,12 +88,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tacowordpress2/addmany.git",
-                "reference": "465fb7ea5263dd475f673b35441b5467955fb4a8"
+                "reference": "470561d2fef8abb474b7553935503391da4729b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tacowordpress2/addmany/zipball/465fb7ea5263dd475f673b35441b5467955fb4a8",
-                "reference": "465fb7ea5263dd475f673b35441b5467955fb4a8",
+                "url": "https://api.github.com/repos/tacowordpress2/addmany/zipball/470561d2fef8abb474b7553935503391da4729b8",
+                "reference": "470561d2fef8abb474b7553935503391da4729b8",
                 "shasum": ""
             },
             "require": {
@@ -118,7 +117,7 @@
             "support": {
                 "source": "https://github.com/tacowordpress2/addmany/tree/v0.1"
             },
-            "time": "2017-06-21 21:03:10"
+            "time": "2017-06-24T00:31:53+00:00"
         },
         {
             "name": "tacowordpress2/frontend-loader",
@@ -156,7 +155,7 @@
             "support": {
                 "source": "https://github.com/tacowordpress2/frontend-loader/tree/v1.0"
             },
-            "time": "2017-06-19 21:52:53"
+            "time": "2017-06-19T21:52:53+00:00"
         },
         {
             "name": "tacowordpress2/tacowordpress",
@@ -164,12 +163,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tacowordpress2/tacowordpress.git",
-                "reference": "9983e6d67f85e71d5f0bb138cf21f543aa9cecac"
+                "reference": "a9a5778ceb69c41121e5f663a42e102a0707ba23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tacowordpress2/tacowordpress/zipball/9983e6d67f85e71d5f0bb138cf21f543aa9cecac",
-                "reference": "9983e6d67f85e71d5f0bb138cf21f543aa9cecac",
+                "url": "https://api.github.com/repos/tacowordpress2/tacowordpress/zipball/a9a5778ceb69c41121e5f663a42e102a0707ba23",
+                "reference": "a9a5778ceb69c41121e5f663a42e102a0707ba23",
                 "shasum": ""
             },
             "require": {
@@ -201,7 +200,7 @@
             "support": {
                 "source": "https://github.com/tacowordpress2/tacowordpress/tree/v1.0"
             },
-            "time": "2017-06-19 22:01:50"
+            "time": "2017-06-24T00:31:13+00:00"
         },
         {
             "name": "tacowordpress2/util",
@@ -236,7 +235,7 @@
             "support": {
                 "source": "https://github.com/tacowordpress2/util/tree/v1.0"
             },
-            "time": "2017-06-19 22:04:30"
+            "time": "2017-06-19T22:04:30+00:00"
         }
     ],
     "packages-dev": [],

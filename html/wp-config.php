@@ -48,9 +48,13 @@ if(preg_match('/(localhost|\.dev|\.vera)/', $_SERVER['HTTP_HOST'])) {
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-if (empty(DB_TABLE_PREFIX)) {
+$table_prefix = '';
+if (empty('DB_TABLE_PREFIX')) {
   throw new \Exception('DB_TABLE_PREFIX needs to be defined in wp-config.php');
+} else {
+  $table_prefix  = 'DB_TABLE_PREFIX';
 }
+
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
@@ -67,14 +71,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'put your unique phrase here');
-define('SECURE_AUTH_KEY',  'put your unique phrase here');
-define('LOGGED_IN_KEY',    'put your unique phrase here');
-define('NONCE_KEY',        'put your unique phrase here');
-define('AUTH_SALT',        'put your unique phrase here');
-define('SECURE_AUTH_SALT', 'put your unique phrase here');
-define('LOGGED_IN_SALT',   'put your unique phrase here');
-define('NONCE_SALT',       'put your unique phrase here');
+define('AUTH_KEY',         'aLeQ+ y)d+QItVRM&c(}qdR8_3f 8u7MpQ7t:afUp+_JHL5![17+jq{f^O& !W|~');
+define('SECURE_AUTH_KEY',  '-g0q-&[-r5<zn+tL33hblG_akT+s=KD+yFbfc7t`QLX->k]Av)~i<UC6l|%5K>8c');
+define('LOGGED_IN_KEY',    '0h|S{yOu6b|C__I_,OHMP9Bm_1|k~ReURgXxGG4 I+}4#xxl-CW`4?G[<H@.7Dbz');
+define('NONCE_KEY',        '4){Zx]5>E%>Scovhc&<~I5Qk13|0[l@qPOTssVa{j1!PG )Am|G-cuD75DLdo4o6');
+define('AUTH_SALT',        '<DcOie]3L}4l`4FP4=9t>~eYkmOxvb y{AJ$7E-j{G{%7&BP!|f5`?^j)4T1/,e@');
+define('SECURE_AUTH_SALT', '-w-!tQ?*${eDBC7(b6|&!ZG+to8Da7Amk,[wN*[#:;7,N%}hp~?eBJG*8:J  {n1');
+define('LOGGED_IN_SALT',   '4t2#)O< |ukXvl]0Ls>4uS/8uaCIM_|[/$PCjhGd[!6iyug: HWD`AGGlP-nA9MA');
+define('NONCE_SALT',       '1Qi}$`?ypT+BSwtdMzTG Qw *t(<Xj@q6YH:oHF!:Jvk-4jHuprr|H4qW-l=[yD&');
 
 
 // define where wp-content is since wordpress is in its own directory not committed through version control
