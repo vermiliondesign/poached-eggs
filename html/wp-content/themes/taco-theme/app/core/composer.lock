@@ -164,12 +164,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tacowordpress2/tacowordpress.git",
-                "reference": "89a6d60a270a24a52837d8f09961084f1b62de4b"
+                "reference": "b8255f6da0da48e512a089463a7ff72cb41fdfe6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tacowordpress2/tacowordpress/zipball/89a6d60a270a24a52837d8f09961084f1b62de4b",
-                "reference": "89a6d60a270a24a52837d8f09961084f1b62de4b",
+                "url": "https://api.github.com/repos/tacowordpress2/tacowordpress/zipball/b8255f6da0da48e512a089463a7ff72cb41fdfe6",
+                "reference": "b8255f6da0da48e512a089463a7ff72cb41fdfe6",
                 "shasum": ""
             },
             "require": {
@@ -199,9 +199,9 @@
                 "wordpress"
             ],
             "support": {
-                "source": "https://github.com/tacowordpress2/tacowordpress/tree/v1.0"
+                "source": "https://github.com/tacowordpress2/tacowordpress/tree/master"
             },
-            "time": "2017-06-26 21:18:19"
+            "time": "2017-06-26 23:35:46"
         },
         {
             "name": "tacowordpress2/util",
