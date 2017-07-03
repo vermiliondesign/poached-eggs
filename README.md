@@ -1,8 +1,7 @@
 # Boilerplate Requirements:
 
--node v.7
--webpack
--composer
+* NodeJs
+* Composer
 
 # Boilerplate Features:
 
@@ -11,11 +10,11 @@
 
 # Getting Started
 
-1. cd into html and run composer install (this installs WordPress, tacotheme, and any other theme dependencies as specified on the composer.json and /html/wp-content/themes/taco-theme/app/core/composer.json files)
+1. cd into `html` and run `composer install`.  This installs WordPress, Taco theme, and any other theme dependencies as specified in the `composer.json` and `/html/wp-content/themes/taco-theme/app/core/composer.json` files
 
-3. add your salts and table prefix to the wp-config.php
+3. Add your salts and table prefix to the `wp-config.php`
 
-4. add a db.php file at the root of the repo, with the below database constants:
+4. Add a `db.php` file at the root of the repo, with the below database constants:
 
 ```
 <?php
@@ -23,37 +22,45 @@ define(CLIENT_DB_HOSTNAME, '');
 define(CLIENT_DB_NAME, '');
 define(CLIENT_DB_USER, '');
 define(CLIENT_DB_PASSWORD, '');
-?>
 ```
 
-5. visit the host to setup the wordpress database. Before installing, remove the /wordpress/ in the url path before installing. You'll also need to make sure the .htaccess-wordpress-default gets copied into the /wordpress directory and rename .htaccess
+5. Visit the host to setup the WordPress database. Before installing, remove the `/wordpress/` in the url path before installing.
 
-5. update .gitlab-ci.yml with staging and production paths
+5. Update `.gitlab-ci.yml` with staging and production paths
 
-6. check the .htaccess and when setting up password protection on staging environments, comment out lines 5-14 on the .htaccess in the root of the html directory
+6. Check the .htaccess and when setting up password protection on staging environments. A password should be required automatically on Staging 3.
 
-7. plugins to install
+7. Recommended plugins to install
 
--WP Yoast SEO
--iThemes Security
--Regenerate Thumbnails
--Broken Link Checker
-
+* WP Yoast SEO
+* iThemes Security
+* Regenerate Thumbnails
+* Broken Link Checker
+* WP Super Cache
 
 # Git Workflow
 
-git checkout -b develop. All pushes to develop should build and deploy automatically to staging. Switching to master, merging develop and pushing to master will setup the production server build and deployment. Pushing to master should always be set to manually deploy.
+All development work should be done on a branch called `develop`.
+
+Only production ready code should live on the `master` branch.
+
+In general, run `git rebase master` to pull changes back into the `develop` branch and `git merge` to merge changes from `develop` back to `master`.
+
+Gitlab is set to automatically deploy the `develop` branch, and is set to manually deploy the `master` branch.
 
 
 # Ignored files
 
-This theme ignores WordPress core files. It also ignores the db.php so make sure this gets manually migrated when the site moves environments.
+This theme ignores WordPress core files. It also ignores the `db.php` so make sure this gets manually migrated when the site moves environments.
 
 # Frontend tasks
 
-Please review the README in the taco-theme for more information about using webpack.
+Run `npm start` in the root Taco theme directory (`/html/wp-content/themes/taco-theme`) or `shortcut-to-taco-theme` to start development on your local machine. The front end cache is busted automatically by webpack whenever changes are made.
 
 
 # Changelog
+### v1.0.1
+* Some cleanup of default JS and CSS
+
 ### v1.0
 * First version to be used with PHP 7

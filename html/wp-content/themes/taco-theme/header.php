@@ -7,7 +7,7 @@
       <img src="https://placehold.it/300x80" alt="">
     </a>
   </h1>
-  
+
   <nav>
     <?php if(has_nav_menu('menu_primary')) {
       wp_nav_menu( array(

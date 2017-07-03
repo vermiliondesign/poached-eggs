@@ -115,6 +115,8 @@ let config = {
     new webpack.ProvidePlugin({
       '$': 'jquery',
       'jQuery': 'jquery',
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery',
       '_': 'lodash',
       'CONFIG': source_path + 'util/config.js',
     }),
