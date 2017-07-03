@@ -57,8 +57,14 @@ This theme ignores WordPress core files. It also ignores the `db.php` so make su
 
 Run `npm start` in the root Taco theme directory (`/html/wp-content/themes/taco-theme`) or `shortcut-to-taco-theme` to start development on your local machine. The front end cache is busted automatically by webpack whenever changes are made.
 
+Run `npm run build-prod` to run a production build locally.
+
+Note: You'll see some deprecation warnings when running Webpack. These are currently expected and should be fixed when the Webpack Extract Text Plugin developers update their plugin.
 
 # Changelog
+### v1.1
+* Upgrading to Webpack 3
+
 ### v1.0.1
 * Some cleanup of default JS and CSS
 

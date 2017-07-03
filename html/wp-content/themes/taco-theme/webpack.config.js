@@ -64,51 +64,68 @@ files.forEach(function(file) {
 });
 
 let config = {
-  add_vendor: function (name, path) {
-    this.resolve.alias[name] = path;
-    this.module.noParse.push(new RegExp(path));
-    this.entry[name] = [name];
-  },
   entry: entry_points,
-  debug: !is_production,
   devtool: is_production ? 'none' : 'module-inline-source-map',
   output: {
     path: output_path,
     filename: '[name]' + '.js'
   },
   resolve: { alias: {} },
+  stats: { children: false },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap!sass-loader?sourceMap=map')
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                minimize: true
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                data: '$ENVIRONMENT: ' + (is_production === true ? 'production' : 'development') + '; \
+                $ANIMATION_DURATION: ' + CONFIG.ANIMATION_DURATION + '; \
+                ',
+              }
+            }
+          ],
+        }),
       },
       {
         test: /\.(jpg|png|svg|gif|eot|ttf|woff|woff2)(\?.+)?$/,
-        loader: 'file-loader?name=assets/[name].[ext]'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'assets/[name].[ext]'
+            },
+          },
+        ],
       },
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        query: {
-          presets: ['es2015', 'react'],
+        options: {
+          presets: ['es2015'],
           retainLines: true,
         },
       },
     ],
-    noParse: []
-  },
-  sassLoader: {
-    data: '$ENVIRONMENT: ' + (is_production === true ? 'production' : 'development') + '; \
-           $ANIMATION_DURATION: ' + CONFIG.ANIMATION_DURATION + '; \
-           $HEADER_BREAKPOINT: ' + CONFIG.HEADER_BREAKPOINT + '; \
-           ',
   },
   plugins: [
-    new ExtractTextPlugin('[name]' +  '.css'),
+    new ExtractTextPlugin({
+      filename: '[name]' +  '.css'
+    }),
     new WebpackNotifierPlugin(),
     new webpack.DefinePlugin({
-      //'process.env.NODE_ENV': (is_production === true ? 'production' : 'development'),
+      'process.env.NODE_ENV': (is_production === true ? 'production' : 'development'),
       'RESOURCES_PATH': JSON.stringify(RESOURCES_PATH),
       'RESOURCES_URL_BASE': JSON.stringify(RESOURCES_URL_BASE),
     }),
@@ -126,8 +143,5 @@ let config = {
     }),
   ],
 };
-
-config.add_vendor('jquery', node_dir + 'jquery/dist/jquery' + (is_production === true ? '.min' : '') +  '.js');
-config.add_vendor('lodash', node_dir + 'lodash/lodash' + (is_production === true ? '.min' : '') +  '.js');
 
 module.exports = config;
