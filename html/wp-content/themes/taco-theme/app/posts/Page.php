@@ -69,6 +69,13 @@ class Page extends \Taco\Post {
    * because the global $post var isn't accessible when we need it
    */
   public function loadPost() {
+    // Don't reload the post if we already have it
+    global $post;
+    if (!empty($post)) {
+      $this->loaded_post = $post;
+      return true;
+    }
+
     // When we're loading the page, it's in the query string.
     // When we're saving the page, it's in the post vars
     if (!empty($_POST['post_ID'])) {
