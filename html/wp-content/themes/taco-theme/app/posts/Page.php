@@ -27,41 +27,105 @@ class Page extends \Taco\Post {
     );
   }
 
-
   public function getDefaultFields() {
-    return array();
+    return [];
   }
 
+  /**
+   * Get the template of this page and populate $this->_wp_page_template with it
+   * @return string The template of this
+   */
+  public function getTemplate() {
+    // If this is the user facing page, then _wp_page_template will be populated
+    // and that can be used as the template.
+    //
+    // If this is the admin facing page, then loadPost() is run to figure out
+    // the page ID and the template is determined that way
+    if (!empty($this->_wp_page_template)) {
+      $template = $this->_wp_page_template;
+    } else {
+      if(!$this->loadPost() || !Obj::iterable($this->loaded_post)) {
+        return [];
+      }
 
-
-  public function getFieldsByPageTemplate($template_file_name) {
-    // setup empty array to return at the end
-    $template_fields = [];
-
-
-    if($template_file_name === 'templates/tmpl-demo.php') {
-      $template_fields = array_merge($template_fields, array(
-        'demo' => array(
-          'type' => 'text'
-        )
-      ));
+      $template = get_page_template_slug($this->loaded_post->ID);
+      $this->_wp_page_template = $template;
     }
 
-    return $template_fields;
+    return $template;
+  }
+
+  public function getFieldsByPageTemplate($template_file_name) {
+    // Default fields get prepended to returned array
+    $default_fields = [
+      'default' => [
+        'type' => 'text',
+      ],
+    ];
+
+    // Default empty template fields array
+    $template_fields = [];
+
+    switch($template_file_name) {
+      case 'templates/tmpl-demo.php':
+        $template_fields = array_merge(
+          $this->getDemoFields()
+        );
+      break;
+    }
+
+    return array_merge(
+      $default_fields,
+      $template_fields
+    );
   }
 
   public function getAdminColumns() {
-    return array('title');
+    return ['title'];
   }
 
   // get metaboxes and conditional js to hide/show fields
   public function getMetaBoxes() {
-
     wp_register_script('taco_page_conditionals', sprintf('%s/themes/taco-theme/app/_/js/page.js', content_url()), 'jquery', THEME_VERSION);
     wp_enqueue_script('taco_page_conditionals');
 
-    // return parent::getMetaBoxes();
-    return self::METABOX_GROUPING_PREFIX;
+    $template = $this->getTemplate();
+
+    return $this->getMetaBoxesByTemplate($template);
+  }
+
+  public function getMetaBoxesByTemplate($template_file_name) {
+    // Default boxes get prepended to returned array
+    $default_boxes = [
+      'Default' => 'default',
+    ];
+
+    // Initialize empty boxes for template
+    $template_boxes = [];
+
+    switch ($template_file_name) {
+      case 'templates/tmpl-demo.php':
+        $template_boxes = [
+          'Demo' => array_keys($this->getDemoFields()),
+        ];
+      break;
+    }
+
+    return array_merge(
+      $default_boxes,
+      $template_boxes
+    );
+  }
+
+  /**
+   * Get an array of demo fields
+   */
+  public function getDemoFields() {
+    return [
+      'demo' => [
+        'type' => 'text'
+      ]
+    ];
   }
 
   /**
