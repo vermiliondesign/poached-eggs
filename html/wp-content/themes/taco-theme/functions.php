@@ -16,5 +16,7 @@ class Collection extends \Taco\Util\Collection {}
 class Str extends \Taco\Util\Str {}
 class View extends \Taco\Util\View {}
 
+View::setDirectories([__DIR__ . '/views']);
+
 require_once __DIR__.'/functions/functions-generic.php';
 require_once __DIR__.'/functions/functions-app.php';
