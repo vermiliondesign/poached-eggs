@@ -28,7 +28,11 @@ class Page extends \Taco\Post {
   }
 
   public function getDefaultFields() {
-    return [];
+    return [
+      'default' => [
+        'type' => 'text',
+      ],
+    ];
   }
 
   /**
@@ -56,13 +60,6 @@ class Page extends \Taco\Post {
   }
 
   public function getFieldsByPageTemplate($template_file_name) {
-    // Default fields get prepended to returned array
-    $default_fields = [
-      'default' => [
-        'type' => 'text',
-      ],
-    ];
-
     // Default empty template fields array
     $template_fields = [];
 
@@ -75,7 +72,7 @@ class Page extends \Taco\Post {
     }
 
     return array_merge(
-      $default_fields,
+      $this->getDefaultFields(), // Default fields get prepended to returned array
       $template_fields
     );
   }
@@ -128,27 +125,37 @@ class Page extends \Taco\Post {
     ];
   }
 
-  /**
-   * This should only be used on the admin side to manually load the post in getFields()
-   * because the global $post var isn't accessible when we need it
+    /**
+   * Load the post fields based on the ID, or by using
+   * GET and POST vars on the admin side
    */
   public function loadPost() {
-    // Don't reload the post if we already have it
+    // Don't do anything if post already loaded
+    if (!empty($this->loaded_post)) {
+      return true;
+    }
+
+    // Don't do extra work to load the post if this post is the same as the global post
     global $post;
-    if (!empty($post)) {
+
+    if (!empty($post) && !empty($this->ID) && $post->ID === $this->ID) {
       $this->loaded_post = $post;
       return true;
     }
 
     // When we're loading the page, it's in the query string.
     // When we're saving the page, it's in the post vars
-    if (!empty($_POST['post_ID'])) {
+    if (!empty($this->ID)) {
+      $post_id = $this->ID;
+    } else if (!empty($_POST['post_ID'])) {
       $post_id = $_POST['post_ID'];
     } else if (!empty($_GET['post'])) {
       $post_id = $_GET['post'];
     }
 
-    if(empty($post_id)) return false;
+    if(empty($post_id)) {
+      return false;
+    }
 
     $post_object = get_post($post_id);
     if(is_object($post_object)) {
