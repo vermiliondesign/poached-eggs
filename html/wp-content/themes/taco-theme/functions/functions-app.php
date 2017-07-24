@@ -261,6 +261,16 @@ add_filter('single_template', function() {
 });
 
 
+// use the archives folder for all archive-{post_type} or archive.php template/s
+add_filter('archive_template', function() {
+  global $post;
+  if(!file_exists(__DIR__.sprintf('/../archives/archive-%s.php', $post->post_type))) {
+    return __DIR__.'/../archives/archive.php';
+  }
+  return __DIR__.sprintf('/../archives/archive-%s.php', $post->post_type);
+});
+
+
 /**
  * Get edit link when admin is logged in
  * @param int $id (post ID or term ID)
@@ -431,30 +441,30 @@ class Arrow_Walker_Nav_Menu extends Walker_Nav_Menu {
  * @return string HTML
  */
 function get_pagination($current_page, $total_posts_to_paginate, $max_pages=5, $per_page=10, $is_resource=false, $link_prefix=null) {
-  
+
   $pagination = '';
   $page_count = ceil($total_posts_to_paginate / $per_page);
   $first_page = max($current_page - floor($max_pages / 2), 1);
   $last_page = min($first_page + ($max_pages - 1), $page_count);
-  
+
   // Evaluate first page again, for when one of the last pages is selected
   if($max_pages >= $page_count) {
     $first_page = 1;
   } elseif($max_pages <= $page_count) {
     $first_page = min($first_page, $last_page - ($max_pages - 1));
   }
-  
+
   $link_prefix = (!$is_resource) ? $link_prefix.'/page/' : null;
   $link_prefix = preg_replace('/\/+/', '/', $link_prefix);
-  
+
   $pagination .= ($first_page != 1) ? '<li class="cta prev" data-page="'.($first_page - 1).'"><a href="'.(($is_resource) ? '#' : $link_prefix.($first_page - 1).'/').'"><i class="fa fa-caret-left">&nbsp;</i></a></li>' : '';
-  
+
   for($i = $first_page; $i <= $last_page; $i++) {
     $pagination .= '<li'.(($i == $current_page) ? ' class="on"' : '').' data-page="'.$i.'"><a href="'.(($is_resource) ? '#' : $link_prefix.$i.'/').'">'.$i.'</a></li>';
   }
-  
+
   $pagination .= ($last_page < $page_count) ? '<li class="cta next" data-page="'.($last_page + 1).'"><a href="'.(($is_resource) ? '#' : $link_prefix.($last_page + 1).'/').'"><i class="fa fa-caret-right">&nbsp;</i></a></li>' : '';
-  
+
   return $pagination;
 }
 
