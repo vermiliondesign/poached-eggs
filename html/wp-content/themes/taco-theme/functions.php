@@ -12,7 +12,7 @@ class Collection extends \Taco\Util\Collection {}
 // class Constants extends \Taco\Util\Constants {}
 // class Html extends \Taco\Util\Html {}
 // class Num extends \Taco\Util\Num {}
-// class Obj extends \Taco\Util\Obj {}
+class Obj extends \Taco\Util\Obj {}
 class Str extends \Taco\Util\Str {}
 class View extends \Taco\Util\View {}
 
