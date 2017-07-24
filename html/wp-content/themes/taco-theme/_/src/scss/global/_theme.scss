@@ -40,30 +40,11 @@ ol {
   }
 }
 
-.center {
-  text-align: center;
-}
-
 .table {
   display: table;
   .cell {
     display: table-cell;
   }
-}
-
-
-.columns.columns-centered {
-  float: none !important;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.row,
-.container {
-  width: 94%;
-  max-width: 75rem;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 ol,
