@@ -70,7 +70,11 @@ let config = {
     path: output_path,
     filename: '[name]' + '.js'
   },
-  resolve: { alias: {} },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+    }
+  },
   stats: { children: false },
   module: {
     rules: [
@@ -104,17 +108,26 @@ let config = {
           {
             loader: 'file-loader',
             options: {
-              name: 'assets/[name].[ext]'
+              name: 'assets/[path][name].[ext]'
             },
           },
         ],
       },
       {
+        test: /\.vue$/,
+        use: [
+          {
+            loader: 'vue-loader',
+          },
+        ],
+      },
+      {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
-        options: {
-          presets: ['es2015'],
-          retainLines: true,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            retainLines: true,
+          },
         },
       },
     ],
@@ -125,7 +138,7 @@ let config = {
     }),
     new WebpackNotifierPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': (is_production === true ? 'production' : 'development'),
+      'process.env.NODE_ENV': (is_production === true ? '"production"' : '"development"'),
       'RESOURCES_PATH': JSON.stringify(RESOURCES_PATH),
       'RESOURCES_URL_BASE': JSON.stringify(RESOURCES_URL_BASE),
     }),
@@ -135,6 +148,7 @@ let config = {
       'window.$': 'jquery',
       'window.jQuery': 'jquery',
       '_': 'lodash',
+      'window._': 'lodash',
       'CONFIG': source_path + 'util/config.js',
     }),
     new EmitHash({
