@@ -10,7 +10,7 @@
 
 # Getting Started
 
-1. cd into `html` and run `composer install`.  This installs WordPress, Taco theme, and any other theme dependencies as specified in the `composer.json` and `/html/wp-content/themes/taco-theme/app/core/composer.json` files
+1. Run `composer install`.  This installs WordPress, Taco theme, and any other theme dependencies as specified in the `composer.json` and `/html/wp-content/themes/taco-theme/app/core/composer.json` files
 
 3. Add your salts and table prefix to the `wp-config.php`
 
