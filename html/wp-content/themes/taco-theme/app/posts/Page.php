@@ -4,25 +4,22 @@ class Page extends \Taco\Post {
 
   public $loaded_post = null;
 
-/**
- * Get the fields for this page type by merging the default template fields
- * with page specific ones
- * @return array The array of fields
-*/
+  /**
+   * Get the fields for this page type by merging the default template fields
+   * with page specific ones
+   * @return array The array of fields
+   */
   public function getFields() {
-    $this->loadPost();
+    $template = $this->getTemplate();
     $loaded_post_fields = [];
 
-    if (!empty($this->loaded_post)) {
-      $loaded_post_fields = $this->getFieldsByPageTemplate(
-        get_page_template_slug($this->loaded_post->ID)
-      );
+    if (!empty($template)) {
+      $loaded_post_fields = $this->getFieldsByPageTemplate($template);
     } else {
       $loaded_post_fields = [];
     }
 
     return array_merge(
-      $this->getDefaultFields(),
       $loaded_post_fields
     );
   }
@@ -40,23 +37,54 @@ class Page extends \Taco\Post {
    * @return string The template of this
    */
   public function getTemplate() {
-    // If this is the user facing page, then _wp_page_template will be populated
-    // and that can be used as the template.
-    //
-    // If this is the admin facing page, then loadPost() is run to figure out
-    // the page ID and the template is determined that way
-    if (!empty($this->_wp_page_template)) {
-      $template = $this->_wp_page_template;
-    } else {
-      if(!$this->loadPost() || !Obj::iterable($this->loaded_post)) {
-        return [];
-      }
-
-      $template = get_page_template_slug($this->loaded_post->ID);
-      $this->_wp_page_template = $template;
+    // Don't do anything if post already loaded
+    if (isset($this->_wp_page_template)) {
+      return $this->_wp_page_template;
     }
 
-    return $template;
+    if ($_GET['preview'] == 'true' && !empty($this->post_parent)) {
+      // First check if this is a preview and if we need to get the parent ID
+      $post_id = $this->post_parent;
+    } else if ($_GET['preview'] == 'true' && !empty($_GET['preview_id'])) {
+      // For some reason, sometimes the preview_id is set and sometimes it isn't
+      $post_id = $_GET['preview_id'];
+    } else if (!empty($this->ID)) {
+      // Next, if this object has an ID then use it
+      $post_id = $this->ID;
+    } else if (!empty($_POST['post_ID'])) {
+      // Now we get into weird cases in the admin or previewing where we need to get the post ID from global vars
+      // When loading the page, it's in the POST vars
+      $post_id = $_POST['post_ID'];
+    } else if (!empty($_POST['post_id'])) {
+      // I have no idea why ID is sometimes capitalized and sometimes it's not
+      $post_id = $_POST['post_id'];
+    } else if (!empty($_GET['post'])) {
+      // When saving the page, it's in the GET vars
+      $post_id = $_GET['post'];
+    } else if (!empty($_GET['revision'])) {
+      // We always need the parent when this is a revision
+      $revision = get_post($_GET['revision']);
+      $post_id = $revision->post_parent;
+    }
+
+    if(empty($post_id)) {
+      return false;
+    }
+
+    $post_object = get_post($post_id);
+    if( is_object($post_object)) {
+      $this->_wp_page_template = get_page_template_slug($post_object);
+
+      if ($this->_wp_page_template === '') {
+        $this->_wp_page_template = 'default';
+      }
+
+      if (isset($this->_wp_page_template)) {
+        return $this->_wp_page_template;
+      }
+    }
+
+    return false;
   }
 
   public function getFieldsByPageTemplate($template_file_name) {
@@ -123,45 +151,5 @@ class Page extends \Taco\Post {
         'type' => 'text'
       ]
     ];
-  }
-
-    /**
-   * Load the post fields based on the ID, or by using
-   * GET and POST vars on the admin side
-   */
-  public function loadPost() {
-    // Don't do anything if post already loaded
-    if (!empty($this->loaded_post)) {
-      return true;
-    }
-
-    // Don't do extra work to load the post if this post is the same as the global post
-    global $post;
-
-    if (!empty($post) && !empty($this->ID) && $post->ID === $this->ID) {
-      $this->loaded_post = $post;
-      return true;
-    }
-
-    // When we're loading the page, it's in the query string.
-    // When we're saving the page, it's in the post vars
-    if (!empty($this->ID)) {
-      $post_id = $this->ID;
-    } else if (!empty($_POST['post_ID'])) {
-      $post_id = $_POST['post_ID'];
-    } else if (!empty($_GET['post'])) {
-      $post_id = $_GET['post'];
-    }
-
-    if(empty($post_id)) {
-      return false;
-    }
-
-    $post_object = get_post($post_id);
-    if(is_object($post_object)) {
-      $this->loaded_post = $post_object;
-      return true;
-    }
-    return false;
   }
 }

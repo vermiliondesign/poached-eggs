@@ -62,6 +62,8 @@ Run `npm run build-prod` to run a production build locally.
 Note: You'll see some deprecation warnings when running Webpack. These are currently expected and should be fixed when the Webpack Extract Text Plugin developers update their plugin.
 
 # Changelog
+## v1.1.3
+Fixing Page class to load the correct template on revisions
 
 ### v1.1.2
 * Bumping required tacowordpress/util version
